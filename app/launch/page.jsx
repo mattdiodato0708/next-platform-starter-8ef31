@@ -46,6 +46,10 @@ export default function LaunchPage() {
                         Open in Replit
                     </Link>
                 </div>
+                <div className="flex flex-col gap-2 rounded-sm border border-neutral-200 bg-white p-4 text-sm text-neutral-700">
+                    <div className="font-medium text-neutral-900">Copy this import URL for Replit:</div>
+                    <code className="break-all rounded bg-neutral-100 px-2 py-1 text-neutral-800">{replitImportUrl}</code>
+                </div>
             </section>
             <Card title="Quick Start">
                 <Markdown content={quickStart(replitImportUrl)} />
