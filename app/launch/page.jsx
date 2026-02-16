@@ -8,8 +8,8 @@ const DEFAULT_REPLIT_IMPORT_URL = 'https://replit.com/github/netlify-templates/n
 const replitImportUrl = process.env.NEXT_PUBLIC_REPLIT_IMPORT_URL || DEFAULT_REPLIT_IMPORT_URL;
 
 const quickStart = (url) => `
-1. Import this repo into Replit (\`${url}\`).
-2. In Replit, open **Tools → Secrets** and add your environment variables (keep API keys and other secrets here).
+1. In Replit, choose **Create Repl → Import from GitHub** and paste \`${url}\`.
+2. After the Repl opens, go to **Tools → Secrets** and add your environment variables (keep API keys and other secrets here).
 3. Install and run the dev server in the shell (the host/port flags keep it reachable from Replit's proxy):
 
 \`\`\`bash

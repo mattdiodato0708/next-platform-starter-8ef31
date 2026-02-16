@@ -40,7 +40,7 @@ If your browser doesn't navigate to the site automatically, visit [localhost:888
 
 ## Running on Replit
 
-1. Import this repo into Replit using its GitHub URL (for example: `https://replit.com/github/netlify-templates/next-platform-starter`; replace the path with your fork if needed).
+1. In Replit, click **Create Repl → Import from GitHub** and paste the repo URL (for example: `https://replit.com/github/netlify-templates/next-platform-starter`; replace the path with your fork if needed).
 2. Add secrets in **Tools → Secrets** (e.g. any API keys, `CONTEXT`, `NEXT_PUBLIC_DISABLE_UPLOADS`).
 3. In the shell run:
    ```bash
