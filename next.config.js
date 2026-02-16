@@ -24,6 +24,11 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/launch',
+        destination: 'https://replit.com',
+        permanent: false,
+      },
     ];
   },
   

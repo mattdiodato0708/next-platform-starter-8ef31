@@ -29,6 +29,9 @@ export default function Page() {
                 <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
                     Read the Docs
                 </Link>
+                <Link href="/launch" className="btn btn-lg sm:min-w-64">
+                    Launch on Replit
+                </Link>
             </section>
             {!!ctx && (
                 <section className="flex flex-col gap-4">
