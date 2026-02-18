@@ -8,6 +8,14 @@ In this site, Netlify Core Primitives are used both implictly for running Next.j
 
 Implicit usage means you're using any Next.js functionality and everything "just works" when deployed - all the plumbing is done for you. Explicit usage is framework-agnostic and typically provides more features than what Next.js exposes.
 
+## 🤖 New: Crypto & Arbitrage Bot
+
+This starter now includes a demonstration crypto launch monitoring and arbitrage detection system. See [BOT_README.md](./BOT_README.md) for complete documentation.
+
+**⚠️ CRITICAL: This is for educational purposes ONLY. The bot simulates trades and does NOT execute real transactions. Read all warnings in BOT_README.md before use.**
+
+Access the bot dashboard at `/bot-dashboard` after starting the development server.
+
 ## Deploying to Netlify
 
 Click the button below to deploy this template to your Netlify account.
