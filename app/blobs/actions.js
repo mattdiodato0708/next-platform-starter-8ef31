@@ -24,7 +24,6 @@ function sanitizeParameters(parameters) {
 
     if (
         !safeName ||
-        !Number.isFinite(seed) ||
         !Number.isInteger(seed) ||
         !Number.isInteger(edges) ||
         edges < 3 ||
