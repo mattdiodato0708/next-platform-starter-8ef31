@@ -31,7 +31,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (
-        !Number.isInteger(seed) ||
+        !Number.isSafeInteger(seed) ||
         seed < 0 ||
         !Number.isInteger(edges) ||
         edges < 3 ||
