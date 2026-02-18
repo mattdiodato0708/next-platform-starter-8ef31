@@ -44,7 +44,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (!Number.isSafeInteger(seed) || seed < 0) {
-        throw new Error('Shape seed must be a non-negative safe integer');
+        throw new Error('Shape seed must be a nonnegative safe integer');
     }
 
     if (!Number.isInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
@@ -56,7 +56,9 @@ function sanitizeParameters(parameters) {
     }
 
     if (colors.length !== 2) {
-        throw new Error('Shape colors must include exactly two valid hex values (e.g. #RGB, #RRGGBB)');
+        throw new Error(
+            'Shape colors must include exactly two valid hex values (e.g. #RGB, #RGBA, #RRGGBB, #RRGGBBAA)'
+        );
     }
 
     return { name: safeName, seed, edges, growth, colors };
