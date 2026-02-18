@@ -6,6 +6,10 @@ function store() {
     return getStore({ name: 'shapes', consistency: 'strong' });
 }
 
+// Keep validation ranges aligned with generateBlob defaults.
+const edgesRange = { min: 3, max: 20 };
+const growthRange = { min: 2, max: 9 };
+
 function sanitizeParameters(parameters) {
     if (!parameters || typeof parameters !== 'object') {
         throw new Error('Invalid shape parameters');
@@ -32,13 +36,12 @@ function sanitizeParameters(parameters) {
 
     if (
         !Number.isSafeInteger(seed) ||
-        seed < 0 ||
         !Number.isInteger(edges) ||
-        edges < 3 ||
-        edges > 20 ||
+        edges < edgesRange.min ||
+        edges > edgesRange.max ||
         !Number.isInteger(growth) ||
-        growth < 2 ||
-        growth > 9 ||
+        growth < growthRange.min ||
+        growth > growthRange.max ||
         colors.length !== 2
     ) {
         throw new Error('Invalid shape parameters');
