@@ -47,18 +47,16 @@ function sanitizeParameters(parameters) {
         throw new Error('Shape seed must be a non-negative safe integer');
     }
 
-    if (!Number.isInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
+    if (!Number.isSafeInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
         throw new Error('Shape edges are out of range');
     }
 
-    if (!Number.isInteger(growth) || growth < growthRange.min || growth > growthRange.max) {
+    if (!Number.isSafeInteger(growth) || growth < growthRange.min || growth > growthRange.max) {
         throw new Error('Shape growth is out of range');
     }
 
     if (colors.length !== 2) {
-        throw new Error(
-            'Shape colors must include exactly two valid hex values (e.g. #RGB, #RGBA, #RRGGBB, #RRGGBBAA)'
-        );
+        throw new Error('Shape colors must include two valid hex values (e.g. #RGB, #RGBA, #RRGGBB, #RRGGBBAA)');
     }
 
     return { name: safeName, seed, edges, growth, colors };
