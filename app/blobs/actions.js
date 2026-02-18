@@ -18,15 +18,15 @@ function sanitizeParameters(parameters) {
 
     const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
     const safeName = name
-        .replace(/[^-a-zA-Z0-9]/g, '')
-        .replace(/^-+/, '')
-        .replace(/-+$/, '')
+        .replace(/[^a-zA-Z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
         .slice(0, maxNameLength);
     const seed = Number(parameters.seed);
     const edges = Number(parameters.edges);
     const growth = Number(parameters.growth);
     const colors = Array.isArray(parameters.colors)
         ? parameters.colors
+              .slice(0, 10)
               .map((color) => (typeof color === 'string' ? color.trim() : ''))
               .filter((color) =>
                   /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(
@@ -56,7 +56,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (colors.length !== 2) {
-        throw new Error('Shape colors must include exactly two valid hex values');
+        throw new Error('Shape colors must include exactly two valid hex values (e.g. #RGB, #RRGGBB)');
     }
 
     return { name: safeName, seed, edges, growth, colors };
