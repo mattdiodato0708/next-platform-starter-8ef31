@@ -56,12 +56,22 @@ export default async function Page() {
 }
 
 async function RandomWikiArticle() {
-    const randomWiki = await fetch(randomWikiUrl, {
-        headers: {
-            'User-Agent': 'Next-Platform-Starter/0.1.0 (https://github.com/netlify-templates/next-platform-starter; demo project)'
-        },
-        next: { revalidate: revalidateTTL, tags: [tagName] }
-    });
+    let randomWiki;
+    try {
+        randomWiki = await fetch(randomWikiUrl, {
+            headers: {
+                'User-Agent': 'Next-Platform-Starter/0.1.0 (https://github.com/netlify-templates/next-platform-starter; demo project)'
+            },
+            next: { revalidate: revalidateTTL, tags: [tagName] }
+        });
+    } catch (error) {
+        console.error('Failed to fetch Wikipedia article:', error);
+        return (
+            <Card className="max-w-2xl" role="alert">
+                <p className="text-red-600">Failed to fetch Wikipedia article. Please try again later.</p>
+            </Card>
+        );
+    }
 
     if (!randomWiki.ok) {
         return (
