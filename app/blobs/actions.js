@@ -22,12 +22,7 @@ function sanitizeParameters(parameters) {
               .filter((color) => /^#[0-9a-fA-F]{3,8}$/.test(color))
         : [];
 
-    const hasValidSeed =
-        Number.isInteger(seed) &&
-        seed >= 0 &&
-        seed <= Number.MAX_SAFE_INTEGER &&
-        parameters.seed !== null &&
-        parameters.seed !== '';
+    const hasValidSeed = Number.isInteger(seed) && seed >= 0;
 
     if (
         !safeName ||
