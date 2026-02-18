@@ -66,10 +66,10 @@ async function RandomWikiArticle() {
             next: { revalidate: revalidateTTL, tags: [tagName] }
         });
     } catch (error) {
+        console.error('Failed to fetch Wikipedia article', error);
         return (
             <Card className="max-w-2xl">
                 <p className="text-red-600">Failed to fetch Wikipedia article. Please try again later.</p>
-                <p className="text-sm text-neutral-600">{error.message}</p>
             </Card>
         );
     }
