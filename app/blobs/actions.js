@@ -26,7 +26,7 @@ function sanitizeParameters(parameters) {
     const growth = Number(parameters.growth);
     const colors = Array.isArray(parameters.colors)
         ? parameters.colors
-              .slice(0, 10)
+              .slice(0, 2)
               .map((color) => (typeof color === 'string' ? color.trim() : ''))
               .filter((color) =>
                   /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(
@@ -44,7 +44,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (!Number.isSafeInteger(seed) || seed < 0) {
-        throw new Error('Shape seed must be a safe integer greater than or equal to 0');
+        throw new Error('Shape seed must be a non-negative safe integer');
     }
 
     if (!Number.isInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
