@@ -18,10 +18,9 @@ When deployed to Netlify, the Server Action is run by serverless functions, and 
 'use server';
 import { getStore } from '@netlify/blobs';
 
-// TODO: Always be sanitizing data in real sites!
 export async function uploadShape({ shapeData }) {
     const blobStore = getStore('shapes');
-    const key = data.name;
+    const key = shapeData.name;
     await blobStore.setJSON(key, shapeData);
 }
 ~~~
