@@ -16,7 +16,11 @@ function sanitizeParameters(parameters) {
         throw new Error('Invalid shape parameters');
     }
 
-    const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
+    if (typeof parameters.name !== 'string' || parameters.name.trim().length === 0) {
+        throw new Error('Shape name must be a non-empty string');
+    }
+
+    const name = parameters.name.trim();
     const safeName = name
         .replace(/[^a-zA-Z0-9]+/g, '-')
         .replace(/-+/g, '-')
@@ -58,7 +62,7 @@ function sanitizeParameters(parameters) {
 
     if (colors.length !== 2) {
         throw new Error(
-            'Shape colors must include two valid hex values with a leading # (e.g. #RGB, #RGBA, #RRGGBB, #RRGGBBAA)'
+            `Shape colors must include exactly two valid hex values; received ${colors.length}. Expected formats include #RGB, #RGBA, #RRGGBB, and #RRGGBBAA.`
         );
     }
 
