@@ -26,11 +26,13 @@ function sanitizeParameters(parameters) {
               )
         : [];
 
-    const hasValidSeed = Number.isInteger(seed) && seed >= 0;
+    if (safeName.length === 0) {
+        throw new Error('Invalid shape parameters');
+    }
 
     if (
-        safeName.length < 1 ||
-        !hasValidSeed ||
+        !Number.isInteger(seed) ||
+        seed < 0 ||
         !Number.isInteger(edges) ||
         edges < 3 ||
         edges > 20 ||
