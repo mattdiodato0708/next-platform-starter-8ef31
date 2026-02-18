@@ -17,7 +17,10 @@ function sanitizeParameters(parameters) {
     }
 
     const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
-    const safeName = name.replace(/[^-a-zA-Z0-9]/g, '').slice(0, maxNameLength);
+    const safeName = name
+        .replace(/[^-a-zA-Z0-9]/g, '')
+        .replace(/^-+/, '')
+        .slice(0, maxNameLength);
     const seed = Number(parameters.seed);
     const edges = Number(parameters.edges);
     const growth = Number(parameters.growth);
@@ -32,20 +35,23 @@ function sanitizeParameters(parameters) {
         : [];
 
     if (safeName.length === 0) {
-        throw new Error('Invalid shape parameters');
+        throw new Error('Shape name must include at least one alphanumeric character');
     }
 
-    if (
-        !Number.isSafeInteger(seed) ||
-        !Number.isInteger(edges) ||
-        edges < edgesRange.min ||
-        edges > edgesRange.max ||
-        !Number.isInteger(growth) ||
-        growth < growthRange.min ||
-        growth > growthRange.max ||
-        colors.length !== 2
-    ) {
-        throw new Error('Invalid shape parameters');
+    if (!Number.isSafeInteger(seed) || seed < 0) {
+        throw new Error('Shape seed must be a non-negative safe integer');
+    }
+
+    if (!Number.isInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
+        throw new Error('Shape edges are out of range');
+    }
+
+    if (!Number.isInteger(growth) || growth < growthRange.min || growth > growthRange.max) {
+        throw new Error('Shape growth is out of range');
+    }
+
+    if (colors.length !== 2) {
+        throw new Error('Shape colors are invalid');
     }
 
     return { name: safeName, seed, edges, growth, colors };
