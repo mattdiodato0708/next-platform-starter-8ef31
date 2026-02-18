@@ -9,6 +9,7 @@ function store() {
 // Keep validation ranges aligned with generateBlob defaults.
 const edgesRange = { min: 3, max: 20 };
 const growthRange = { min: 2, max: 9 };
+const maxNameLength = 64;
 
 function sanitizeParameters(parameters) {
     if (!parameters || typeof parameters !== 'object') {
@@ -16,7 +17,7 @@ function sanitizeParameters(parameters) {
     }
 
     const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
-    const safeName = name.replace(/[^-a-zA-Z0-9]/g, '').slice(0, 64);
+    const safeName = name.replace(/[^-a-zA-Z0-9]/g, '').slice(0, maxNameLength);
     const seed = Number(parameters.seed);
     const edges = Number(parameters.edges);
     const growth = Number(parameters.growth);
