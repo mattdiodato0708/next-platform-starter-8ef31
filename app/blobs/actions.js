@@ -44,7 +44,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (!Number.isSafeInteger(seed) || seed < 0) {
-        throw new Error('Shape seed must be a nonnegative safe integer');
+        throw new Error('Shape seed must be a safe integer greater than or equal to 0');
     }
 
     if (!Number.isInteger(edges) || edges < edgesRange.min || edges > edgesRange.max) {
