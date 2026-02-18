@@ -20,7 +20,7 @@ import { getStore } from '@netlify/blobs';
 
 export async function uploadShape({ shapeData }) {
     const blobStore = getStore('shapes');
-    const key = data.name;
+    const key = shapeData.name;
     await blobStore.setJSON(key, shapeData);
 }
 ~~~

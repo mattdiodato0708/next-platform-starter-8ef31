@@ -12,7 +12,7 @@ function sanitizeParameters(parameters) {
     }
 
     const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
-    const safeName = name.replace(/[^a-zA-Z0-9-]/g, '').slice(0, 64);
+    const safeName = name.replace(/[^-a-zA-Z0-9]/g, '').slice(0, 64);
     const seed = Number(parameters.seed);
     const edges = Number(parameters.edges);
     const growth = Number(parameters.growth);
@@ -25,6 +25,7 @@ function sanitizeParameters(parameters) {
     if (
         !safeName ||
         !Number.isFinite(seed) ||
+        !Number.isInteger(seed) ||
         !Number.isInteger(edges) ||
         edges < 3 ||
         edges > 20 ||
