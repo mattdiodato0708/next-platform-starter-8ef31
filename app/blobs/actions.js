@@ -19,13 +19,17 @@ function sanitizeParameters(parameters) {
     const colors = Array.isArray(parameters.colors)
         ? parameters.colors
               .map((color) => (typeof color === 'string' ? color.trim() : ''))
-              .filter((color) => /^#[0-9a-fA-F]{3,8}$/.test(color))
+              .filter((color) =>
+                  /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(
+                      color
+                  )
+              )
         : [];
 
     const hasValidSeed = Number.isInteger(seed) && seed >= 0;
 
     if (
-        !safeName ||
+        safeName.length < 1 ||
         !hasValidSeed ||
         !Number.isInteger(edges) ||
         edges < 3 ||
