@@ -20,6 +20,7 @@ function sanitizeParameters(parameters) {
     const safeName = name
         .replace(/[^-a-zA-Z0-9]/g, '')
         .replace(/^-+/, '')
+        .replace(/-+$/, '')
         .slice(0, maxNameLength);
     const seed = Number(parameters.seed);
     const edges = Number(parameters.edges);
@@ -38,6 +39,10 @@ function sanitizeParameters(parameters) {
         throw new Error('Shape name must include at least one alphanumeric character');
     }
 
+    if (Number.isNaN(seed) || Number.isNaN(edges) || Number.isNaN(growth)) {
+        throw new Error('Shape numeric parameters must be numbers');
+    }
+
     if (!Number.isSafeInteger(seed) || seed < 0) {
         throw new Error('Shape seed must be a non-negative safe integer');
     }
@@ -51,7 +56,7 @@ function sanitizeParameters(parameters) {
     }
 
     if (colors.length !== 2) {
-        throw new Error('Shape colors are invalid');
+        throw new Error('Shape colors must include exactly two valid hex values');
     }
 
     return { name: safeName, seed, edges, growth, colors };
