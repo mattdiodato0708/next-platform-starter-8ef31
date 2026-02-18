@@ -6,13 +6,46 @@ function store() {
     return getStore({ name: 'shapes', consistency: 'strong' });
 }
 
-// Always be sanitizing data in real sites!
+function sanitizeParameters(parameters) {
+    if (!parameters || typeof parameters !== 'object') {
+        throw new Error('Invalid shape parameters');
+    }
+
+    const name = typeof parameters.name === 'string' ? parameters.name.trim() : '';
+    const safeName = name.replace(/[^a-zA-Z0-9-]/g, '').slice(0, 64);
+    const seed = Number(parameters.seed);
+    const edges = Number(parameters.edges);
+    const growth = Number(parameters.growth);
+    const colors = Array.isArray(parameters.colors)
+        ? parameters.colors
+              .map((color) => (typeof color === 'string' ? color.trim() : ''))
+              .filter((color) => /^#[0-9a-fA-F]{3,8}$/.test(color))
+        : [];
+
+    if (
+        !safeName ||
+        !Number.isFinite(seed) ||
+        !Number.isInteger(edges) ||
+        edges < 3 ||
+        edges > 20 ||
+        !Number.isInteger(growth) ||
+        growth < 2 ||
+        growth > 9 ||
+        colors.length !== 2
+    ) {
+        throw new Error('Invalid shape parameters');
+    }
+
+    return { name: safeName, seed, edges, growth, colors };
+}
+
 export async function uploadShapeAction({ parameters }) {
     if (uploadDisabled) throw new Error('Sorry, uploads are disabled');
 
-    const key = parameters.name;
-    await store().setJSON(key, parameters);
-    console.log('Stored shape with parameters:', parameters, 'to key:', key);
+    const sanitizedParameters = sanitizeParameters(parameters);
+    const key = sanitizedParameters.name;
+    await store().setJSON(key, sanitizedParameters);
+    console.log('Stored shape with parameters:', sanitizedParameters, 'to key:', key);
 }
 
 export async function listShapesAction() {
