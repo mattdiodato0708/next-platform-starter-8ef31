@@ -46,6 +46,17 @@ netlify dev
 
 If your browser doesn't navigate to the site automatically, visit [localhost:8888](http://localhost:8888).
 
+## Running on Replit
+
+1. In Replit, click **Create Repl → Import from GitHub** and paste the repo URL (for example: `https://replit.com/github/netlify-templates/next-platform-starter`; replace the path with your fork if needed).
+2. Add secrets in **Tools → Secrets** (e.g. any API keys, `CONTEXT`, `NEXT_PUBLIC_DISABLE_UPLOADS`).
+3. In the shell run:
+   ```bash
+   npm install
+   npm run dev -- --hostname 0.0.0.0 --port 3000
+   ```
+4. Click **Open in Browser**; Replit will proxy port 3000.
+
 ## Resources
 
 - Check out the [Next.js on Netlify docs](https://docs.netlify.com/frameworks/next-js/overview/)
