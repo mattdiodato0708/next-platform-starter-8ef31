@@ -32,6 +32,9 @@ export default function Page() {
                 <Link href="/launch" className="btn btn-lg sm:min-w-64">
                     Launch on Replit
                 </Link>
+                <Link href="/bot-dashboard" className="btn btn-lg sm:min-w-64 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                    🤖 Crypto & Arbitrage Bot Dashboard
+                </Link>
             </section>
             {!!ctx && (
                 <section className="flex flex-col gap-4">
